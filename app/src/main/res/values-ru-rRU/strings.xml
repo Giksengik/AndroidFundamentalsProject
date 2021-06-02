@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AndroidFundamentalsProject</string>
+    <string name="storyline_text">Сюжет</string>
+    <string name="cast_text">В ролях</string>
+    <string name="back_text">Назад</string>
+    <string name="movies_list_text">Список фильмов</string>
+    <string name="avengers_categories">Боевик, Приключение, Фэнтези</string>
+    <string name="reviews">РЕЦЕНЗИИ</string>
+    <string name="avengers_storyline">После разрушительных событий Avengers: Infinity War вселенная лежит в руинах. С помощью оставшихся союзников,         Мстители снова собираются, чтобы обратить вспять действия Таноса и восстановить равновесие во вселенной.</string>
+    <string name="avengers_age_limit">13+</string>
+    <string name="avengers_name">Мстители : Финал</string>
+    <string name="movie_poster">Постер фильма</string>
+    <string name="back_button">Кнопка назад</string>
+</resources>

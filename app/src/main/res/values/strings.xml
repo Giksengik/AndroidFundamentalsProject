@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">AndroidFundamentalsProject</string>
+    <string name="storyline_text">Storyline</string>
+    <string name="cast_text">Cast</string>
+    <string name="back_text">Back</string>
+    <string name="movies_list_text">Movies List</string>
+    <string name="avengers_name" >Avengers: End Game</string>
+    <string name="avengers_categories">Action, Adventure, Fantasy</string>
+    <string name="reviews"> REVIEWS </string>
+    <string name="avengers_storyline">After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies,
+        the Avengers assemble once more in order to reverse Thanos actions and restore balance to the universe.</string>
+    <string-array name="avengers_actors">
+        <item>Robert Downey Jr.</item>
+        <item>Chris  Evans</item>
+        <item>Mark Ruffalo.</item>
+        <item>Chris Hemsworth</item>
+    </string-array>
+    <string name="avengers_age_limit">13+</string>
+    <string name="movie_poster">Movie poster</string>
+    <string name="back_button">Back button</string>
+</resources>
