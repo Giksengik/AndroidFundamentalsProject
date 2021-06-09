@@ -15,7 +15,12 @@
         <item>Mark Ruffalo.</item>
         <item>Chris Hemsworth</item>
     </string-array>
+    <string name="avengers_num_of_reviews" translatable="false">555</string>
     <string name="avengers_age_limit">13+</string>
+    <string name="avengers_duration">137 min</string>
+
+
     <string name="movie_poster">Movie poster</string>
     <string name="back_button">Back button</string>
+
 </resources>

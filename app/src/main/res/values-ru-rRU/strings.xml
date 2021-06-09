@@ -12,4 +12,5 @@
     <string name="avengers_name">Мстители : Финал</string>
     <string name="movie_poster">Постер фильма</string>
     <string name="back_button">Кнопка назад</string>
+    <string name="avengers_duration">137 мин.</string>
 </resources>
