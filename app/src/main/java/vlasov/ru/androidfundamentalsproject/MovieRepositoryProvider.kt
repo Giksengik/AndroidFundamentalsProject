@@ -1,4 +1,7 @@
 package vlasov.ru.androidfundamentalsproject
 
-interface MovieRepositoryProvider {
+import vlasov.ru.androidfundamentalsproject.data.MovieRepository
+
+internal interface MovieRepositoryProvider {
+    fun provideMovieRepository(): MovieRepository
 }

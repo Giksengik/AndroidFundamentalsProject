@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.launch
+import vlasov.ru.androidfundamentalsproject.models.Movie
 
 class FragmentMoviesList : Fragment() {
     companion object{
@@ -15,7 +18,7 @@ class FragmentMoviesList : Fragment() {
     }
 
     interface MoviesListEventListener{
-        fun onMovieClickEvent(movie : MovieDetails)
+        fun onMovieClickEvent(movie : Movie)
     }
 
     var moviesAdapter : MoviesListItemAdapter? = null
@@ -35,22 +38,33 @@ class FragmentMoviesList : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_movies_list, container, false)
         val moviesList = root.findViewById<RecyclerView>(R.id.moviesList)
-        moviesAdapter = MoviesListItemAdapter( object : MoviesListItemAdapter.MovieInListOnClickListener{
-            override fun onMovieClick(movie: MovieDetails) {
-                moviesListEventListener?.onMovieClickEvent(movie)
-            }
 
-        })
-        moviesList.layoutManager = GridLayoutManager(context,2)
-        moviesList.adapter = moviesAdapter
+        moviesAdapter =
+            MoviesListItemAdapter(object : MoviesListItemAdapter.MovieInListOnClickListener {
+                override fun onMovieClick(movie: Movie) {
+                    moviesListEventListener?.onMovieClickEvent(movie)
+                }
+            })
 
-
-        if (context != null) {
-            moviesAdapter!!.addTestMovie(requireContext())
+        moviesList.apply {
+            layoutManager = GridLayoutManager(context, 2)
+            adapter = moviesAdapter
         }
+
+        loadDataToAdapter()
 
         return root
     }
+
+
+    private fun loadDataToAdapter() {
+        val repo = (requireActivity() as MovieRepositoryProvider).provideMovieRepository()
+        lifecycleScope.launch {
+            val moviesData = repo.loadMovies()
+            moviesAdapter?.submitList(moviesData)
+        }
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()

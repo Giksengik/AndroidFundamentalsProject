@@ -1,4 +1,3 @@
 package vlasov.ru.androidfundamentalsproject.models
 
-class Genre {
-}
+data class Genre(val id: Int, val name: String)

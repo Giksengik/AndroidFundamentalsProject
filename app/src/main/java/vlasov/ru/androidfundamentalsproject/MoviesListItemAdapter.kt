@@ -1,5 +1,6 @@
 package vlasov.ru.androidfundamentalsproject
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
@@ -8,13 +9,19 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import vlasov.ru.androidfundamentalsproject.models.Movie
 
-class MoviesListItemAdapter(private var onClickListener : MovieInListOnClickListener? = null) : RecyclerView.Adapter<MoviesListItemAdapter.ViewHolder>() {
-    private val movies : MutableList<MovieDetails> = mutableListOf()
+class MoviesListItemAdapter(
+    private var onClickListener : MovieInListOnClickListener? = null
+) : ListAdapter<Movie, MoviesListItemAdapter.ViewHolder>(DiffCallback()) {
+
     interface MovieInListOnClickListener{
-        fun onMovieClick(movie: MovieDetails)
+        fun onMovieClick(movie: Movie)
     }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -23,41 +30,12 @@ class MoviesListItemAdapter(private var onClickListener : MovieInListOnClickList
         return ViewHolder(itemView)
     }
 
-    override fun getItemCount(): Int {
-        return movies.size
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(getItem(position), onClickListener)
+
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = movies[position]
-        holder.movieDuration?.text = item.duration
-        holder.movieName?.text = item.name
-        holder.ageLimit?.text = item.ageLimit
-        holder.categories?.text = item.categories
-        holder.numOfReviews?.text = item.numOfReviews
-        holder.movieImage?.background = item.movieIconSrc
-        holder.itemView.setOnClickListener{
-            onClickListener?.onMovieClick(item)
-        }
-    }
-    fun addMovie(movie : MovieDetails) {
-        movies.add(movie)
-        notifyItemChanged(movies.size)
-    }
-    fun addTestMovie(context : Context){
-        addMovie(
-                context.let { it1 ->
-            AppCompatResources.getDrawable(it1,R.drawable.avengers_poster)?.let {
-                MovieDetails(context.getString(R.string.avengers_storyline),
-                        context.getString(R.string.avengers_name),
-                        context.getString(R.string.avengers_age_limit),
-                        context.getString(R.string.avengers_num_of_reviews),
-                        context.getString(R.string.avengers_categories),
-                        mutableListOf(), context.getString(R.string.avengers_duration),
-                        it
-                )
-            }
-        }!!)
-    }
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var categories : TextView? = null
         var ageLimit : TextView? = null
@@ -72,6 +50,28 @@ class MoviesListItemAdapter(private var onClickListener : MovieInListOnClickList
             movieName = itemView.findViewById(R.id.movieInListName)
             movieDuration = itemView.findViewById(R.id.movieInListDuration)
             movieImage = itemView.findViewById(R.id.movieIconInList)
+        }
+        @SuppressLint("SetTextI18n")
+        fun bind(movie : Movie, onClickListener : MovieInListOnClickListener?) {
+            movieDuration?.text = movie.runningTime.toString()
+            movieName?.text = movie.title
+            ageLimit?.text = movie.pgAge.toString() + "+"
+            categories?.text = movie.getGenres()
+            numOfReviews?.text = movie.reviewCount.toString()
+            movieImage?.load(movie.imageUrl)
+            itemView.setOnClickListener{
+                onClickListener?.onMovieClick(movie)
+            }
+        }
+    }
+
+    class DiffCallback : DiffUtil.ItemCallback<Movie>() {
+        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+            return oldItem == newItem
         }
 
     }

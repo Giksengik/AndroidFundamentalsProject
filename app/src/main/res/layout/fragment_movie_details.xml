@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="movieDetails"
-            type="vlasov.ru.androidfundamentalsproject.MovieDetails" />
-
+            name="movie"
+            type="vlasov.ru.androidfundamentalsproject.models.Movie" />
     </data>
+
 <ScrollView
 
     android:background="@color/dark_background_color"
@@ -26,7 +28,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@{movieDetails.movieIconSrc}"
         android:contentDescription="@string/movie_poster" />
 
     <TextView
@@ -34,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="@{movieDetails.name}"
+        android:text="@{movie.title}"
         android:textColor="#FFFFFF"
         android:textSize="40sp"
         app:layout_constrainedWidth="true"
@@ -47,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="12dp"
-        android:text="@{movieDetails.ageLimit}"
+        android:text="@{Integer.toString(movie.pgAge) + '+'}"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/movieName"
@@ -58,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="@{movieDetails.categories}"
+        android:text="@{movie.genres}"
         android:textColor="#FF3466"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        android:text="@{movieDetails.numOfReviews}"
+        android:text="@{Integer.toString(movie.reviewCount)}"
         android:textColor="#6D6D80"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +95,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
-        android:text="@{movieDetails.description}"
+        android:text="@{movie.storyLine}"
         android:textColor="#CCFFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
