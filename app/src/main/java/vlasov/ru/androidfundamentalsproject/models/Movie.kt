@@ -17,13 +17,17 @@ data class Movie(
         val storyLine: String,
         val actors: List<Actor>,
 ) : Serializable {
-    fun getGenres(): String {
+    fun getGenresString(): String {
         val str = StringBuilder()
         for (item in genres) {
+            if(str.isNotEmpty())
+                str.append(", ")
             str.append(item.name)
-            str.append(", ")
         }
         return str.toString()
+    }
+    fun getRunningTimeString(): String {
+        return "${runningTime / 60}: ${runningTime % 60}"
     }
 }
 

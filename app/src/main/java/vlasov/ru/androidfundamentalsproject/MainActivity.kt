@@ -2,9 +2,11 @@ package vlasov.ru.androidfundamentalsproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.constraintlayout.widget.ConstraintLayout
 import vlasov.ru.androidfundamentalsproject.data.JsonMovieRepository
 import vlasov.ru.androidfundamentalsproject.data.MovieRepository
+import vlasov.ru.androidfundamentalsproject.di.MovieRepositoryProvider
+import vlasov.ru.androidfundamentalsproject.features.moviedetails.FragmentMovieDetails
+import vlasov.ru.androidfundamentalsproject.features.movielist.FragmentMoviesList
 import vlasov.ru.androidfundamentalsproject.models.Movie
 
 class MainActivity : AppCompatActivity(), MovieRepositoryProvider, FragmentMoviesList.MoviesListEventListener

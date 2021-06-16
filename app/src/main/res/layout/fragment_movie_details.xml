@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="@{movie.genres}"
+        android:text="@{movie.genresString}"
         android:textColor="#FF3466"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -133,8 +133,10 @@
         app:layout_constraintTop_toTopOf="@+id/backButtonMovie" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/movieCastRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/movieCastTitle" />
