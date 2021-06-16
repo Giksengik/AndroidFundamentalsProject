@@ -1,17 +1,16 @@
-package vlasov.ru.androidfundamentalsproject
+package vlasov.ru.androidfundamentalsproject.features.movielist
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import vlasov.ru.androidfundamentalsproject.R
+import vlasov.ru.androidfundamentalsproject.load
 import vlasov.ru.androidfundamentalsproject.models.Movie
 
 class MoviesListItemAdapter(
@@ -53,10 +52,10 @@ class MoviesListItemAdapter(
         }
         @SuppressLint("SetTextI18n")
         fun bind(movie : Movie, onClickListener : MovieInListOnClickListener?) {
-            movieDuration?.text = movie.runningTime.toString()
+            movieDuration?.text = movie.getRunningTimeString()
             movieName?.text = movie.title
             ageLimit?.text = movie.pgAge.toString() + "+"
-            categories?.text = movie.getGenres()
+            categories?.text = movie.getGenresString()
             numOfReviews?.text = movie.reviewCount.toString()
             movieImage?.load(movie.imageUrl)
             itemView.setOnClickListener{

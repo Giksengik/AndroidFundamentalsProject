@@ -1,4 +1,4 @@
-package vlasov.ru.androidfundamentalsproject
+package vlasov.ru.androidfundamentalsproject.di
 
 import vlasov.ru.androidfundamentalsproject.data.MovieRepository
 
