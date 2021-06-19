@@ -9,8 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import vlasov.ru.androidfundamentalsproject.R
-import vlasov.ru.androidfundamentalsproject.load
 import vlasov.ru.androidfundamentalsproject.models.Movie
 
 class MoviesListItemAdapter(

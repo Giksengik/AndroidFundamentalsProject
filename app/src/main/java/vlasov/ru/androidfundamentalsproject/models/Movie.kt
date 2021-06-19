@@ -27,7 +27,7 @@ data class Movie(
         return str.toString()
     }
     fun getRunningTimeString(): String {
-        return "${runningTime / 60}: ${runningTime % 60}"
+        return "${runningTime / 60}:${runningTime % 60}h"
     }
 }
 

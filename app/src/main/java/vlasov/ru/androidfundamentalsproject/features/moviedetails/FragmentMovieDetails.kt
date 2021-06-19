@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import vlasov.ru.androidfundamentalsproject.R
 import vlasov.ru.androidfundamentalsproject.data.MovieRepository
 import vlasov.ru.androidfundamentalsproject.databinding.FragmentMovieDetailsBinding
 import vlasov.ru.androidfundamentalsproject.di.MovieRepositoryProvider
-import vlasov.ru.androidfundamentalsproject.load
 import vlasov.ru.androidfundamentalsproject.models.Movie
 
 class FragmentMovieDetails : Fragment() {

@@ -2,6 +2,7 @@ package vlasov.ru.androidfundamentalsproject.data
 
 import android.content.Context
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -33,7 +34,6 @@ internal class JsonMovieRepository(private val context: Context) : MovieReposito
     private suspend fun loadMoviesFromJsonFile(): List<Movie> {
         val genresMap = loadGenres()
         val actorsMap = loadActors()
-
         val data = readAssetFileToString("data.json")
         return parseMovies(data, genresMap, actorsMap)
     }
