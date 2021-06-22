@@ -69,12 +69,11 @@
         android:id="@+id/movieNumOfReviews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
-        android:text="@{Integer.toString(movie.reviewCount)}"
         android:textColor="#6D6D80"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/movieDetailsStar5"
         app:layout_constraintTop_toBottomOf="@+id/movieCategories" />
 
     <TextView
@@ -113,24 +112,26 @@
         app:layout_constraintTop_toBottomOf="@+id/movieStoryline" />
 
     <ImageButton
-        android:id="@+id/backButtonMovie"
+        android:id="@+id/backImage"
         android:layout_width="22dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="45dp"
         android:background="@null"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/back_button"
         android:src="@drawable/ic_back_button"
-        android:contentDescription="@string/back_button" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/back_text"
-        app:layout_constraintBottom_toBottomOf="@+id/backButtonMovie"
-        app:layout_constraintStart_toEndOf="@+id/backButtonMovie"
-        app:layout_constraintTop_toTopOf="@+id/backButtonMovie" />
+        android:textColor="@color/gray_dark"
+        android:id="@+id/backButtonMovie"
+        app:layout_constraintBottom_toBottomOf="@+id/backImage"
+        app:layout_constraintStart_toEndOf="@+id/backImage"
+        app:layout_constraintTop_toTopOf="@+id/backImage" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/movieCastRecyclerView"
@@ -140,6 +141,56 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/movieCastTitle" />
+
+    <ImageView
+        android:id="@+id/movieDetailsStar1"
+        android:layout_width="10dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/movieNumOfReviews"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/movieNumOfReviews"
+        app:srcCompat="@drawable/ic_star" />
+
+    <ImageView
+        android:id="@+id/movieDetailsStar2"
+        android:layout_width="10dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/movieDetailsStar1"
+        app:layout_constraintStart_toEndOf="@+id/movieDetailsStar1"
+        app:layout_constraintTop_toTopOf="@+id/movieDetailsStar1"
+        app:srcCompat="@drawable/ic_star" />
+
+    <ImageView
+        android:id="@+id/movieDetailsStar3"
+        android:layout_width="10dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/movieDetailsStar2"
+        app:layout_constraintStart_toEndOf="@+id/movieDetailsStar2"
+        app:layout_constraintTop_toTopOf="@+id/movieDetailsStar2"
+        app:srcCompat="@drawable/ic_star" />
+
+    <ImageView
+        android:id="@+id/movieDetailsStar4"
+        android:layout_width="10dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/movieDetailsStar3"
+        app:layout_constraintStart_toEndOf="@+id/movieDetailsStar3"
+        app:layout_constraintTop_toTopOf="@+id/movieDetailsStar3"
+        app:srcCompat="@drawable/ic_star" />
+
+    <ImageView
+        android:id="@+id/movieDetailsStar5"
+        android:layout_width="10dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/movieDetailsStar4"
+        app:layout_constraintStart_toEndOf="@+id/movieDetailsStar4"
+        app:layout_constraintTop_toTopOf="@+id/movieDetailsStar4"
+        app:srcCompat="@drawable/ic_star" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

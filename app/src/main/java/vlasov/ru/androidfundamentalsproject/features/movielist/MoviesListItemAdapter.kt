@@ -1,11 +1,14 @@
 package vlasov.ru.androidfundamentalsproject.features.movielist
 
 import android.annotation.SuppressLint
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -42,6 +45,7 @@ class MoviesListItemAdapter(
         var movieName : TextView? = null
         var movieDuration :  TextView? = null
         var movieImage : ImageView? = null
+        private var starsImages: List<ImageView>? =  null
         init {
             categories = itemView.findViewById(R.id.movieInListCategories)
             ageLimit = itemView.findViewById(R.id.movieInListAgeLimit)
@@ -49,6 +53,13 @@ class MoviesListItemAdapter(
             movieName = itemView.findViewById(R.id.movieInListName)
             movieDuration = itemView.findViewById(R.id.movieInListDuration)
             movieImage = itemView.findViewById(R.id.movieIconInList)
+            starsImages = listOf(
+                    itemView.findViewById(R.id.star),
+                    itemView.findViewById(R.id.star2),
+                    itemView.findViewById(R.id.star3),
+                    itemView.findViewById(R.id.star4),
+                    itemView.findViewById(R.id.star5)
+            )
         }
         @SuppressLint("SetTextI18n")
         fun bind(movie : Movie, onClickListener : MovieInListOnClickListener?) {
@@ -56,10 +67,19 @@ class MoviesListItemAdapter(
             movieName?.text = movie.title
             ageLimit?.text = movie.pgAge.toString() + "+"
             categories?.text = movie.getGenresString()
-            numOfReviews?.text = movie.reviewCount.toString()
+            numOfReviews?.text = movie.reviewCount.toString() + " " + itemView.context.getString(R.string.reviews)
             movieImage?.load(movie.imageUrl)
             itemView.setOnClickListener{
                 onClickListener?.onMovieClick(movie)
+            }
+            //set stars tint
+            starsImages?.forEachIndexed { index, imageView ->
+                val colorId = if (movie.rating / 2 > index) R.color.pink_light else R.color.gray_dark
+                ImageViewCompat.setImageTintList(
+                        imageView, ColorStateList.valueOf(
+                        ContextCompat.getColor(imageView.context, colorId)
+                )
+                )
             }
         }
     }

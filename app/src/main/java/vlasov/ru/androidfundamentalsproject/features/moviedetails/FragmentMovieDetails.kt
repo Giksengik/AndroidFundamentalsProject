@@ -1,11 +1,16 @@
 package vlasov.ru.androidfundamentalsproject.features.moviedetails
 
+import android.annotation.SuppressLint
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -52,14 +57,32 @@ class FragmentMovieDetails : Fragment() {
         return root
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setUIData(movie: Movie) {
         binding.movie = movie
         binding.root.findViewById<ImageView>(R.id.moviePicture).load(movie.detailImageUrl)
+        binding.root.findViewById<TextView>(R.id.movieNumOfReviews).text = movie.reviewCount.toString() + " " + getString(R.string.reviews)
         castAdapter.submitList(movie.actors)
+        val starsImages = listOf(
+                binding.movieDetailsStar1,
+                binding.movieDetailsStar2,
+                binding.movieDetailsStar3,
+                binding.movieDetailsStar4,
+                binding.movieDetailsStar5
+        )
+        starsImages.forEachIndexed { index, imageView ->
+            val colorId = if (movie.rating / 2 > index) R.color.pink_light else R.color.gray_dark
+            ImageViewCompat.setImageTintList(
+                    imageView, ColorStateList.valueOf(
+                    ContextCompat.getColor(imageView.context, colorId)
+            )
+            )
+        }
+
     }
 
     private fun setUpListeners(){
-        binding.root.findViewById<ImageButton>(R.id.backButtonMovie).setOnClickListener{
+        binding.root.findViewById<TextView>(R.id.backButtonMovie).setOnClickListener{
             requireActivity().supportFragmentManager.popBackStack()
         }
     }
