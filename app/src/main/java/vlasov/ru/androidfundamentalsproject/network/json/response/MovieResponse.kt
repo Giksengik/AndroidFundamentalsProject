@@ -5,8 +5,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class MovieResponse( @SerialName("adult") val isAdult : Boolean,
-    @SerialName("background_path") val backgroundPath: String,
-    @SerialName("genre_ids") val genreIds : Array<Int>,
+                     @SerialName("id") val id : Int,
+    @SerialName("backdrop_path") val backgroundPath: String,
+    @SerialName("genre_ids") val genreIds : List<Int>,
     @SerialName("original_language") val originalLanguage : String,
     @SerialName("original_title") val originalTitle : String,
     @SerialName("overview") val overview : String,
