@@ -1,4 +1,4 @@
-package vlasov.ru.androidfundamentalsproject.features.movielist
+package vlasov.ru.androidfundamentalsproject.features.movielist.view
 
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList

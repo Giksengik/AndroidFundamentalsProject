@@ -1,4 +1,4 @@
-package vlasov.ru.androidfundamentalsproject.features.movielist
+package vlasov.ru.androidfundamentalsproject.features.movielist.view
 
 import android.content.Context
 import android.os.Bundle
@@ -6,12 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import vlasov.ru.androidfundamentalsproject.di.MovieRepositoryProvider
 import vlasov.ru.androidfundamentalsproject.R
+import vlasov.ru.androidfundamentalsproject.features.movielist.viewmodel.MovieListViewModelFactory
+import vlasov.ru.androidfundamentalsproject.features.movielist.viewmodel.MoviesListViewModelImpl
+import vlasov.ru.androidfundamentalsproject.features.movielist.viewmodel.MoviesListViewState
 import vlasov.ru.androidfundamentalsproject.models.Movie
 
 class FragmentMoviesList : Fragment() {
@@ -20,7 +25,7 @@ class FragmentMoviesList : Fragment() {
         fun onMovieClickEvent(movie : Movie)
     }
 
-    val viewModel : MoviesListViewModel by viewModels{
+    val viewModelImpl : MoviesListViewModelImpl by viewModels{
         MovieListViewModelFactory((requireActivity() as MovieRepositoryProvider).provideMovieRepository())
     }
 
@@ -53,29 +58,24 @@ class FragmentMoviesList : Fragment() {
             })
             adapter = moviesAdapter
         }
-
-        viewModel.movieList.observe(viewLifecycleOwner, {
-            setListData(it)
-        })
-
-        viewModel.loadingState.observe(viewLifecycleOwner, {
-            if(it) setLoading()
-            else setCompleteLoading()
-        })
-        viewModel.loadDataToAdapter()
+        loadDataToAdapter()
         return root
     }
 
-    private fun setLoading() {
-        moviesListProgressBar?.visibility = View.VISIBLE
-    }
-
-    private fun setListData(movies : List<Movie>) {
-        moviesAdapter?.submitList(movies)
-    }
-
-    private fun setCompleteLoading() {
-        moviesListProgressBar?.visibility = View.GONE
+    private fun loadDataToAdapter(){
+        viewModelImpl.moviesStateOutput.observe(viewLifecycleOwner) {
+            when(it){
+                is MoviesListViewState.MoviesLoaded -> {
+                    moviesAdapter?.submitList(it.movies)
+                    moviesListProgressBar?.visibility = View.GONE
+                }
+                is MoviesListViewState.FailedToLoad -> Toast.makeText(
+                    requireContext(),
+                    R.string.error_network_failed,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
 
 
@@ -91,6 +91,6 @@ class FragmentMoviesList : Fragment() {
 
 
     companion object{
-        val FRAGMENT_TAG = "vlasov.ru.androidfundamentalsproject.features.movielist.FragmentMoviesList"
+        val FRAGMENT_TAG = "vlasov.ru.androidfundamentalsproject.features.movielist.view.FragmentMoviesList"
     }
 }

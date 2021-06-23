@@ -1,25 +1,24 @@
-package vlasov.ru.androidfundamentalsproject
+package vlasov.ru.androidfundamentalsproject.features
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import vlasov.ru.androidfundamentalsproject.MovieApp
+import vlasov.ru.androidfundamentalsproject.R
 import vlasov.ru.androidfundamentalsproject.data.MovieRepository
 import vlasov.ru.androidfundamentalsproject.data.MovieRepositoryImpl
-import vlasov.ru.androidfundamentalsproject.data.locale.room.AppRoomDatabase
 import vlasov.ru.androidfundamentalsproject.data.locale.room.RoomDataSource
 import vlasov.ru.androidfundamentalsproject.di.MovieRepositoryProvider
 import vlasov.ru.androidfundamentalsproject.di.NetworkModule
 import vlasov.ru.androidfundamentalsproject.features.moviedetails.FragmentMovieDetails
-import vlasov.ru.androidfundamentalsproject.features.movielist.FragmentMoviesList
+import vlasov.ru.androidfundamentalsproject.features.movielist.view.FragmentMoviesList
 import vlasov.ru.androidfundamentalsproject.models.Movie
-import vlasov.ru.androidfundamentalsproject.network.RemoteMovieDataSource
 import vlasov.ru.androidfundamentalsproject.network.json.DataSource
 
 class MainActivity : AppCompatActivity(), MovieRepositoryProvider, FragmentMoviesList.MoviesListEventListener
 {
     private val networkModule = NetworkModule()
     private val remoteDataSource = DataSource(networkModule.api)
-    private val db = AppRoomDatabase.getInstance(applicationContext)
-    private val localDataSource = RoomDataSource(db)
+    private val localDataSource = RoomDataSource(MovieApp.db)
     private val movieRepository = MovieRepositoryImpl(remoteDataSource, localDataSource = localDataSource)
 
     override fun onCreate(savedInstanceState: Bundle?) {
