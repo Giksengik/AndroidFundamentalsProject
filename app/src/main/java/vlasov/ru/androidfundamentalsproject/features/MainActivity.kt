@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import vlasov.ru.androidfundamentalsproject.data.MovieRepository
 import vlasov.ru.androidfundamentalsproject.data.MovieRepositoryImpl
+import vlasov.ru.androidfundamentalsproject.data.locale.room.AppRoomDatabase
+import vlasov.ru.androidfundamentalsproject.data.locale.room.RoomDataSource
 import vlasov.ru.androidfundamentalsproject.di.MovieRepositoryProvider
 import vlasov.ru.androidfundamentalsproject.di.NetworkModule
 import vlasov.ru.androidfundamentalsproject.features.moviedetails.FragmentMovieDetails
@@ -16,7 +18,9 @@ class MainActivity : AppCompatActivity(), MovieRepositoryProvider, FragmentMovie
 {
     private val networkModule = NetworkModule()
     private val remoteDataSource = DataSource(networkModule.api)
-    private val movieRepository = MovieRepositoryImpl(remoteDataSource)
+    private val db = AppRoomDatabase.getInstance(applicationContext)
+    private val localDataSource = RoomDataSource(db)
+    private val movieRepository = MovieRepositoryImpl(remoteDataSource, localDataSource = localDataSource)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

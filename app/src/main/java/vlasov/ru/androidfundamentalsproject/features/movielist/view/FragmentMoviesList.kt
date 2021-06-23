@@ -6,18 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import androidx.lifecycle.lifecycleScope
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.launch
 import vlasov.ru.androidfundamentalsproject.di.MovieRepositoryProvider
 import vlasov.ru.androidfundamentalsproject.R
-import vlasov.ru.androidfundamentalsproject.data.MovieRepository
-import vlasov.ru.androidfundamentalsproject.features.moviedetails.MovieDetailsViewModelFactory
 import vlasov.ru.androidfundamentalsproject.models.Movie
 
 class FragmentMoviesList : Fragment() {
@@ -26,7 +20,7 @@ class FragmentMoviesList : Fragment() {
         fun onMovieClickEvent(movie : Movie)
     }
 
-    val viewModel : MovieListViewModel by viewModels{
+    val viewModel : MoviesListViewModel by viewModels{
         MovieListViewModelFactory((requireActivity() as MovieRepositoryProvider).provideMovieRepository())
     }
 

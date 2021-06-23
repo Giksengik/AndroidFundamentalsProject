@@ -21,26 +21,38 @@
 
     <ImageView
         android:id="@+id/moviePicture"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:scaleType="fitXY"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/movie_poster"
+        app:layout_constraintDimensionRatio="3:2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/movie_poster" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/background_mask"
+        app:layout_constraintBottom_toBottomOf="@+id/moviePicture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/movieName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="254dp"
         android:text="@{movie.title}"
         android:textColor="#FFFFFF"
         android:textSize="40sp"
         app:layout_constrainedWidth="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/moviePicture" />
+        app:layout_constraintTop_toTopOf="@+id/moviePicture" />
 
     <TextView
         android:id="@+id/movieAgeRestrictions"

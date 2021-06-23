@@ -15,7 +15,7 @@ data class Movie(
         val imageUrl: String?,
         val detailImageUrl: String?,
         val storyLine: String,
-        val actors: List<Actor>,
+        val actors: List<Actor>
 ) : Serializable {
     fun getGenresString(): String {
         val str = StringBuilder()

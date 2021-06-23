@@ -6,7 +6,7 @@ import vlasov.ru.androidfundamentalsproject.data.MovieRepository
 import vlasov.ru.androidfundamentalsproject.di.MovieRepositoryProvider
 import vlasov.ru.androidfundamentalsproject.models.Movie
 
-class MovieListViewModel(private val repository: MovieRepository) : ViewModel(), LifecycleObserver {
+class MoviesListViewModel(private val repository: MovieRepository) : ViewModel(), LifecycleObserver {
 
     private val mutableMovieList = MutableLiveData<List<Movie>>(emptyList())
     val movieList : LiveData<List<Movie>> get() = mutableMovieList;

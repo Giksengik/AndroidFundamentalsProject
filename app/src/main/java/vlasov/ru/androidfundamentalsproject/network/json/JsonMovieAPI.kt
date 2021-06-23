@@ -8,7 +8,7 @@ import vlasov.ru.androidfundamentalsproject.network.json.response.*
 
 interface JsonMovieAPI {
     companion object{
-        val STANDART_LANGUAGE = "en-US"
+            val STANDART_LANGUAGE = "en-US"
         val STANDART_PAGE = 1
     }
 

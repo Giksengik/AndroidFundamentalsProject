@@ -37,7 +37,7 @@ class DataSource(private val api : JsonMovieAPI) : RemoteMovieDataSource {
                      )
                  },
                  runningTime = 11,
-                 reviewCount = movie.voteCount,
+                 reviewCount = movie.voteCount ?: 0,
                  isLiked = false,
                  rating = movie.voteAverage,
                  imageUrl = formingUrl(baseUrl, posterSize, movie.posterPath),
