@@ -17,4 +17,11 @@
     <string name = "new_film_notification_name">Новый фильм</string>
     <string name = "new_film_notification_description">В приложении появились новые фильмы</string>
     <string name = "new_film_notification_title">There are new movie: </string>
+    <string name = "schedule_watching_button_text">Запланировать просмотр</string>
+    <string name = "permission_calendar_read_explanation_message">Для продолжения дайте пожалуйста доступ к календарю</string>
+    <string name = "dialog_positive_button">Ок</string>
+    <string name = "dialog_negative_button">Закрыть</string>
+    <string name = "permission_calendar_read_denied">Эта функция недоступна без доступа к календарю. Открыть настройки?</string>
+    <string name = "schedule_movie_watching_title">Посмотреть фильм: </string>
+    <string name = "error_scheduling_calendar_event">Календарь не найден на устройстве</string>
 </resources>

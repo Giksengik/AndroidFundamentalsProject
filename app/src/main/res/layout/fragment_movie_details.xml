@@ -19,6 +19,21 @@
 
     android:layout_height="wrap_content">
 
+    <Button
+        android:id="@+id/scheduleWatchingButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="16dp"
+        android:backgroundTint="@color/pink_light"
+        android:paddingRight="16dp"
+        android:text="@string/schedule_watching_button_text"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movieCastRecyclerView" />
+
     <ImageView
         android:id="@+id/moviePicture"
         android:layout_width="0dp"

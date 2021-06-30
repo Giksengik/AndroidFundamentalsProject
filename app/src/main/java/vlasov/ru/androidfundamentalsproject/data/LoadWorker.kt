@@ -28,7 +28,7 @@ class LoadWorker(context: Context, workerParams: WorkerParameters,
                 if (!movieFromDB.contains(item))
                     newMovies.add(item)
             }
-            if (newM ovies.isNotEmpty()) {
+            if (newMovies.isNotEmpty()) {
                 localDataSource.insertMovies(newMovies)
                 MovieApp.context?.let {
                     notificationBuilder.showNewMovieNotification(findBestMovie(newMovies), it)

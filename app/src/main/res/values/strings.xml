@@ -26,4 +26,11 @@
     <string name = "new_film_notification_name">New Movie</string>
     <string name = "new_film_notification_description">There are new movies in the app</string>
     <string name = "new_film_notification_title">There are new movie: </string>
+    <string name = "schedule_watching_button_text">Schedule watching</string>
+    <string name = "permission_calendar_read_explanation_message">To continue please grant access to calendar</string>
+    <string name = "dialog_positive_button">OK</string>
+    <string name = "dialog_negative_button">Cancel</string>
+    <string name = "permission_calendar_read_denied">This feature is not available without calendar permissions. Open app settings</string>
+    <string name = "schedule_movie_watching_title">Watching movie: </string>
+    <string name = "error_scheduling_calendar_event">Calendar has not founded on the device</string>
 </resources>
