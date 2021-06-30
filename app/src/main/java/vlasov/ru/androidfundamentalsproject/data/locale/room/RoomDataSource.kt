@@ -80,5 +80,32 @@ class RoomDataSource(private val db : AppRoomDatabase) : LocalDataSource {
         }
     }
 
-    override suspend fun loadMovie(id: Int): Movie = TODO()
+    override suspend fun loadMovie(id: Long): Movie {
+        return db.getMovieDao().getMovie(id).let{
+            Movie(
+                    id = it.movie.id,
+                    pgAge = it.movie.pgAge,
+                    title = it.movie.title,
+                    genres = it.genres.map { genreDB ->
+                        Genre(
+                                id = genreDB.id,
+                                name = genreDB.name
+                        )
+                    },
+                    runningTime = it.movie.runningTime,
+                    reviewCount = it.movie.reviewCount,
+                    isLiked = it.movie.isLiked,
+                    rating = it.movie.rating,
+                    imageUrl = it.movie.imageUrl,
+                    detailImageUrl = it.movie.detailImageUrl,
+                    storyLine = it.movie.storyLine,
+                    actors = it.actors.map { actorDB ->
+                        Actor(
+                                id = actorDB.id,
+                                name = actorDB.name,
+                                imageUrl = actorDB.imageUrl)
+                    }
+            )
+        }
+    }
 }

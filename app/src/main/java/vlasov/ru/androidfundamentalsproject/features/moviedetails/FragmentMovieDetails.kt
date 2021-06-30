@@ -58,7 +58,7 @@ class FragmentMovieDetails : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setUIData(movie: Movie) {
+    fun setUIData(movie: Movie) {
         binding.movie = movie
         binding.root.findViewById<ImageView>(R.id.moviePicture).load(movie.detailImageUrl)
         binding.root.findViewById<TextView>(R.id.movieNumOfReviews).text = movie.reviewCount.toString() + " " + getString(R.string.reviews)

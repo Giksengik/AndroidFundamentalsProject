@@ -22,5 +22,8 @@
 
     <string name="movie_poster">Movie poster</string>
     <string name="back_button">Back button</string>
-    <string name="error_network_failed">Network failed</string>
+    <string name = "error_network_failed">Network failed</string>
+    <string name = "new_film_notification_name">New Movie</string>
+    <string name = "new_film_notification_description">There are new movies in the app</string>
+    <string name = "new_film_notification_title">There are new movie: </string>
 </resources>

@@ -14,4 +14,7 @@
     <string name="back_button">Кнопка назад</string>
     <string name="avengers_duration">137 мин.</string>
     <string name="error_network_failed">Проблемы с сетью</string>
+    <string name = "new_film_notification_name">Новый фильм</string>
+    <string name = "new_film_notification_description">В приложении появились новые фильмы</string>
+    <string name = "new_film_notification_title">There are new movie: </string>
 </resources>

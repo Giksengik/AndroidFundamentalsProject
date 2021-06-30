@@ -38,6 +38,10 @@ android {
 }
 
 dependencies {
+    def work_version = "2.5.0"
+    // Kotlin + coroutines
+    implementation("androidx.work:work-runtime-ktx:$work_version")
+
     def room_version = "2.3.0"
 
     implementation "androidx.room:room-runtime:$room_version"
